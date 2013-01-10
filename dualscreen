@@ -1,0 +1,15 @@
+#!/bin/bash
+# 
+# Script to turn on and off my dual screen
+#
+# Usage: one script, no flags.
+#   ./dualscreen
+
+ISDUAL=$(xrandr | grep VGA1 | grep "mm x")
+
+if [ "${ISDUAL}" ]; then
+  xrandr --output VGA1 --off
+else
+  xrandr --output VGA1 --auto
+  xrandr --output LVDS1 --below VGA1 --auto
+fi
